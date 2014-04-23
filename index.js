@@ -1,25 +1,20 @@
-var express = require('express')
+var http = require('http');
+var Server = http.Server;
+var server = new Server();
 
-var app = express()
-
-app.use(function(req, res, next) {
-	console.log(req.url)
-	next()
+server.on('request', function(request, response){
+  console.log(request.headers)
+  console.log(request.trailers)
+  console.log(request.method)
+  console.log(request.url)
+  request.on('end', function(){
+    console.log('end')
+  })
+  request.on('data', function(chk){
+    console.log(chk)
+  })
 })
 
-app.get('/', function(req, res, next) {
-	res.status(200).end('hi')
-})
 
-app.post('/', function(req,res,next) {
-	console.log(req.headers)
-	console.log(req.body)
-	if (req.headers.expect === '100-continue') {
-		console.log('continue')
-		res.status(100).end('continue')
-	}
-})
-
-app.listen(631)
-
+server.listen(631)
 console.log('listening on 631')
