@@ -2,6 +2,8 @@ var http = require('http');
 var Server = http.Server;
 var server = new Server();
 
+var ipp = require('ipp');
+
 server.on('request', function(request, response){
   console.log(request.headers)
   console.log(request.trailers)
@@ -11,7 +13,8 @@ server.on('request', function(request, response){
     console.log('end')
   })
   request.on('data', function(chk){
-    console.log(chk)
+    var result = ipp.parse(chk);
+    console.log(result)
   })
 })
 

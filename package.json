@@ -10,6 +10,7 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "express": "~4.10.6",
-    "body-parser": "~1.10.0"
+    "body-parser": "~1.10.0",
+    "ipp": "0.0.6"
   }
 }
